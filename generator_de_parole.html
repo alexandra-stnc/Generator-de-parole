@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Generator de parole în Python</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 40px;
+            background-color: #f0f0f0;
+            color: #333;
+        }
+        h1 {
+            color: #007BFF;
+        }
+        pre {
+            background: #272822;
+            color: #f8f8f2;
+            padding: 15px;
+            overflow-x: auto;
+        }
+        a {
+            color: #007BFF;
+            text-decoration: none;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <h1>Generator de parole în Python</h1>
+    
+    <p>Codul de mai jos generează o parolă aleatorie pe baza alegerilor făcute de utilizator:</p>
+    
+    <ul>
+        <li>Poți alege lungimea parolei</li>
+        <li>Poți decide dacă să includă:</li>
+        <li>1. litere mari (instructiunea use_upper)</li>
+        <li>2. litere mici (instructiunea use_lower)</li>
+        <li>3. cifre (instructiunea use_digits)</li>
+        <li>4. simboluri (instructiunea use_symbols)</li>
+    </ul>
+
+    <h2>Cod Python:</h2>
+    <pre>
+import random
+import string
+
+def generate_password(length, use_upper, use_lower, use_digits, use_symbols):
+    characters = ""
+    
+    if use_upper:
+        characters += string.ascii_uppercase
+    if use_lower:
+        characters += string.ascii_lowercase
+    if use_digits:
+        characters += string.digits
+    if use_symbols:
+        characters += string.punctuation
+    
+    if not characters:
+        return "Trebuie să selectezi cel puțin un tip de caracter!"
+
+    password = ''.join(random.choice(characters) for _ in range(length))
+    return password
+
+length = int(input("Introdu lungimea parolei: "))
+print("Alege tipurile de caractere:")
+use_upper = input("Include litere mari? (da/nu): ").strip().lower() == "da"
+use_lower = input("Include litere mici? (da/nu): ").strip().lower() == "da"
+use_digits = input("Include cifre? (da/nu): ").strip().lower() == "da"
+use_symbols = input("Include simboluri? (da/nu): ").strip().lower() == "da"
+
+password = generate_password(length, use_upper, use_lower, use_digits, use_symbols)
+print(f"Parola generată: {password}")
+    </pre>
+
+    <h2>Testează codul online:</h2>
+    <p>Poți testa codul pe un compilator Python online aici: 
+        <a href="https://www.programiz.com/python-programming/online-compiler/" target="_blank">
+            Programiz Online Python Compiler
+        </a>
+    </p>
+
+</body>
+</html>
